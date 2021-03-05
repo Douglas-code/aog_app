@@ -1,5 +1,7 @@
+import 'package:aog/widgets/input.widget.dart';
 import 'package:aog/widgets/logo.widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_masked_text/flutter_masked_text.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,6 +23,9 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
+  MoneyMaskedTextController _gasolinaController = MoneyMaskedTextController();
+  MoneyMaskedTextController _alcoolController = MoneyMaskedTextController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,6 +33,14 @@ class HomePage extends StatelessWidget {
       body: ListView(
         children: <Widget>[
           Logo(),
+          Input(
+            controller: _gasolinaController,
+            label: "Gasolina",
+          ),
+          Input(
+            controller: _alcoolController,
+            label: "Álcool",
+          ),
         ],
       ),
     );
