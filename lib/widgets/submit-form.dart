@@ -8,13 +8,13 @@ class SubmitForm extends StatelessWidget {
   MoneyMaskedTextController gasController = new MoneyMaskedTextController();
   MoneyMaskedTextController alcController = new MoneyMaskedTextController();
   bool busy = false;
-  Function subimitFunc;
+  Function submitFunc;
 
   SubmitForm({
     @required this.gasController,
     @required this.alcController,
     @required this.busy,
-    @required this.subimitFunc,
+    @required this.submitFunc,
   });
 
   @override
@@ -47,7 +47,7 @@ class SubmitForm extends StatelessWidget {
         LoadingButton(
           busy: busy,
           invert: false,
-          func: subimitFunc,
+          func: submitFunc,
           text: "CALCULAR",
         ),
       ],
