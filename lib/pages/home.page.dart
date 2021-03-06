@@ -10,6 +10,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  Color _color = Colors.deepPurple;
   MoneyMaskedTextController _gasolinaController = MoneyMaskedTextController();
   MoneyMaskedTextController _alcoolController = MoneyMaskedTextController();
   bool _busy = false;
@@ -20,21 +21,25 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      body: ListView(
-        children: <Widget>[
-          Logo(),
-          _completed
-              ? Success(
-                  result: _resultText,
-                  reset: reset,
-                )
-              : SubmitForm(
-                  gasController: _gasolinaController,
-                  alcController: _alcoolController,
-                  busy: _busy,
-                  submitFunc: calculate,
-                ),
-        ],
+      body: AnimatedContainer(
+        duration: Duration(milliseconds: 1200),
+        color: _color,
+        child: ListView(
+          children: <Widget>[
+            Logo(),
+            _completed
+                ? Success(
+                    result: _resultText,
+                    reset: reset,
+                  )
+                : SubmitForm(
+                    gasController: _gasolinaController,
+                    alcController: _alcoolController,
+                    busy: _busy,
+                    submitFunc: calculate,
+                  ),
+          ],
+        ),
       ),
     );
   }
@@ -51,6 +56,7 @@ class _HomePageState extends State<HomePage> {
     double res = alc / gas;
 
     setState(() {
+      _color = Colors.deepPurpleAccent;
       _completed = false;
       _busy = true;
     });
@@ -73,6 +79,7 @@ class _HomePageState extends State<HomePage> {
 
   reset() {
     setState(() {
+      _color = Colors.deepPurple;
       _alcoolController = new MoneyMaskedTextController();
       _gasolinaController = new MoneyMaskedTextController();
       _completed = false;
